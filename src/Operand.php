@@ -12,7 +12,14 @@ Class Operand
 
     public static function isOperand(string $key) : bool
     {
-        return in_array($key) ? 1 : 0;
+        return in_array($key, self::OPARR) ? 1 : 0;
+    }
+
+
+
+    public static function isHook(string $key) : bool
+    {
+        return in_array($key, ['(', ')']) ? 1 : 0;
     }
 
 
@@ -20,13 +27,15 @@ Class Operand
     public static function priority(string $key) : int
     {
         return match ($key) {
+            '(' => 0,
+            ')' => 0,
             '+' => 1,
             '-' => 1,
             '*' => 2,
             '/' => 2,
             '^' => 3,
             '~' => 4,
-            default => throw new \Exception('Неизвестный оператор.'),
+            default => throw new \Exception('Неизвестный оператор "'.$key.'".'),
         };
     }
 }

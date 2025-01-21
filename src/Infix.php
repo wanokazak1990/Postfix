@@ -10,17 +10,36 @@ Class Infix
     {
         $infix = array();
         $strLen = mb_strlen($str);
+        $tmpVal = '';
 
         for($i = 0; $i < $strLen; $i++)
         {
-            if(Operand::isOperand($data[$i]))
+            if(Operand::isOperand($str[$i]))
             {
-
+                if($tmpVal)
+                    array_push($infix, $tmpVal);
+                array_push($infix,$str[$i]);
+                $tmpVal = '';
             }
+            
+            elseif($str[$i] == '(' || $str[$i] == ')')
+            {
+                if($tmpVal)
+                    array_push($infix, $tmpVal);
+                $tmpVal = '';
+                array_push($infix, $str[$i]);
+            }
+
             else
             {
-                
+                $tmpVal .= $str[$i];
             }
+
+            if($i == $strLen-1)
+                if($tmpVal)
+                    array_push($infix, $tmpVal);
         }
+
+        return $infix;
     }
 }
