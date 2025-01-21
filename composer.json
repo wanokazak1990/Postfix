@@ -1,0 +1,18 @@
+{
+    "name": "spartak/postfix",
+    "description": "Перевод инфиксной записи выражения в постфиксную, получение результата.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Spartak\\Postfix\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Я"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
